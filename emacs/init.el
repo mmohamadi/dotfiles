@@ -68,19 +68,16 @@
 (setq mouse-wheel-scroll-amount '(1
                                   ((shift) . 5)))
 
-;; directory tree package
-(use-package neotree
-  :ensure t
-  :defer t
-  :bind
-  ("C-c t" . neotree-toggle))
 
 (use-package all-the-icons
   :ensure t
   :defer t)
+;; do not forget to call all-the-icons-install-fonts
+
 
 ;; theme settings
 (use-package doom-themes
+  :ensure t
   :config
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
@@ -98,6 +95,13 @@
   
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
+
+;; directory tree package
+(use-package neotree
+  :ensure t
+  :defer t
+  :bind
+  ("C-c t" . neotree-toggle))
 
 ;; cursor settings
 (setq-default cursor-type 'bar)
@@ -203,8 +207,7 @@
   :ensure t
   :hook (prog-mode . (lambda ()
                        (yas-reload-all)
-                       (yas-minor-mode)))
-) 
+                       (yas-minor-mode)))) 
 
 ;; set-up protobuf mode
 (use-package protobuf-mode
@@ -213,16 +216,14 @@
 ;; install official snippets
 (use-package yasnippet-snippets
   :ensure t
-  :defer t
-)
+  :defer t)
 
 ;; set-up which-key
 (use-package which-key
   :ensure t
+  :hook (after-init . which-key-mode)
   :config
-  (which-key-mode)
-  (which-key-setup-side-window-right)
-)
+  (which-key-setup-side-window-right))
 
 ;; auto-pair set-up
 (use-package smartparens
@@ -233,6 +234,6 @@
 
 ;; set-up writeroom
 (use-package writeroom-mode
-  :ensure
+  :ensure t
   :bind
   ("C-c w" . writeroom-mode))
