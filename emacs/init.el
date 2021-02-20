@@ -237,3 +237,16 @@
   :ensure t
   :bind
   ("C-c w" . writeroom-mode))
+
+
+;; custom functions
+(defun mohammad/find-init ()
+  "Edit my init.el file"
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+
+(defun mohammad/find-custom ()
+  "Edit my custom.el file"
+  (interactive)
+  (find-file "~/.emacs.d/custom.el"))
